@@ -1,0 +1,39 @@
+const appleSignin =require('apple-signin-auth') ;
+const fs = require('fs')
+    
+    var clientId = 'com.harkaudio.podcast.applesignin.beta'
+    let kid = 'SA6S945KST'
+    let team_id = '8Z7DUYBZ6B'
+    // let kid = 'FF83KD746B'
+    // let bundleID = 'com.harkaudio.podcast.applesignin.beta'
+    let bundleID = 'com.harkaudio.podcast.beta'
+    let REDIRECT_URI = 'https://beta-api.harkaudio.com/api/v0/auth/apple/redirectresponse'
+
+async function main(code) {
+    var privateKey = fs.readFileSync('AuthKey_SA6S945KST.p8', 'utf8');
+
+    const clientSecret = appleSignin.getClientSecret({
+        clientID: clientId, // Apple Client ID
+        teamID: team_id, // Apple Developer Team ID.
+        privateKey: privateKey, // private key associated with your client ID. -- Or provide a `privateKeyPath` property instead.
+        keyIdentifier: kid, // identifier of the private key.
+        // OPTIONAL
+        expAfter: 15777000, // Unix time in seconds after which to expire the clientSecret JWT. Default is now+5 minutes.
+    });
+    console.log(clientSecret)
+    const options = {
+        clientID: clientId, // Apple Client ID
+        // redirectUri: 'http://localhost:3000/auth/apple/callback', // use the same value which you passed to authorisation URL.
+        redirectUri: REDIRECT_URI, // use the same value which you passed to authorisation URL.
+        clientSecret: clientSecret
+    };
+
+    try {
+        const tokenResponse = await appleSignin.getAuthorizationToken(code, options);
+        console.log('tokenResponse',tokenResponse)
+    } catch (err) {
+        console.error(err);
+    }
+}
+let code = 'cbce1b7c79eca4b0da02f4c53d98511bd.0.rrsrs.U6LgWWSOcoSrOpj2Gpm_qw'
+main(code)
