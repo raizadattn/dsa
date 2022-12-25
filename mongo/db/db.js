@@ -7,7 +7,8 @@ async function main(){
      * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
      */
     // const uri = "mongodb+srv://<username>:<password>@<your-cluster-url>/test?retryWrites=true&w=majority";
-    const uri = "mongodb+srv://mongo:mongo@cluster0.5wko0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+    const uri = get this file from harkSecrets folder
  
 
     const client = new MongoClient(uri);

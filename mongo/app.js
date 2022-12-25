@@ -4,7 +4,9 @@ const { MongoClient } = require('mongodb');
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
-const uri = "mongodb+srv://mongo:mongo@cluster0.5wko0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+// const uri = "mongodb+srv://mongo:mongo@cluster0.5wko0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+const uri = get this url from harkSecrets folder
 
 const client = new MongoClient(uri);
 

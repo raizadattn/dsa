@@ -1,17 +1,7 @@
-class graph{
-    constructor(){
-        this.adjacencyList = []
-    }
-    addVertex(){
 
-    }
-    addEdge(){
-
-    }
-    removeEdge(){
-
-    }
-    removeVertex(){
-        
-    }
+bookImage = ''
+if (bookImage) {
+    console.log('bookImage1')
+}else{
+    console.log('bookImage2')
 }
